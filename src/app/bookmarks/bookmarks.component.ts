@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { YoutubevisioService } from '../youtubevisio.service';
-import {s} from '@angular/core/src/render3';
+
 
 @Component({
   selector: 'app-bookmarks',
@@ -9,14 +9,24 @@ import {s} from '@angular/core/src/render3';
 })
 export class BookmarksComponent implements OnInit {
 
-  constructor( private youtubevisioservice : YoutubevisioService) { }
+  constructor( private youtubevisioservice: YoutubevisioService ) { }
 
 
-  bookmarkslist: Array<string> = [];
+
 
 
   ngOnInit() {
-    this.bookmarkslist = this.youtubevisioservice.getListBookmarks();
+
+
+
   }
+
+  bookmarkList() {
+
+    return this.youtubevisioservice.getListBookmarks();
+
+  }
+
+
 
 }

@@ -14,6 +14,10 @@ const appRoutes: Routes = [
   { path: 'video/:id',
     component: VideoViewComponent },
   {
+    path: 'bookmarks/listedesbookmarks',
+    component : BookmarksComponent
+  },
+  {
     path: '**',
     component : VideoViewComponent }
 

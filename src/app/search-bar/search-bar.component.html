@@ -7,7 +7,11 @@
 
   <button type="submit" class="btn btn-success" (click)="onSubmit()">Watch</button>
   <button type="submit" class="btn btn-success" (click)="addToBookmarks()">Add to Bookmarks </button>
-  <button type="submit" class="btn btn-success" (click)="showBookmarksList()">Bookmarks List </button>
+
+  <router-outlet>
+    <button [routerLink]="['bookmarks/listedesbookmarks']" type="submit" class="btn btn-success" >Bookmarks List </button>
+  </router-outlet>
+
 
 </form>
 

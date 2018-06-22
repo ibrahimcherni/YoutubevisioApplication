@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { YoutubevisioService} from '../youtubevisio.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -12,32 +13,28 @@ export class SearchBarComponent implements OnInit {
 
 
 
-  constructor(private youtubevisioservice: YoutubevisioService ) { }
+  constructor(private youtubevisioservice: YoutubevisioService , private router: Router) { }
 
   ngOnInit() {
 
   }
 
   onSubmit() {
-
-    console.log(' ici j"ai appuyé submit ',this.link);
+    this.router.navigate(['/'])
+    console.log(' ici j"ai appuyé submit ', this.link);
     this.youtubevisioservice.setUrl(this.link);
     this.youtubevisioservice.addUrl(this.link);
     console.log('liste des urls ', this.youtubevisioservice.getListedesurls().reverse());
 
   }
 
-  addToBookmarks(link: string ) {
-
-    this.youtubevisioservice.addToBoockmarks(link);
+  addToBookmarks( ) {
+    this.youtubevisioservice.addToBoockmarks(this.link);
     console.log(this.youtubevisioservice.getListBookmarks());
 
   }
 
-  showBookmarksList(){
 
-
-  }
 
 
 
