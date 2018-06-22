@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { YoutubevisioService} from '../youtubevisio.service';
+
 
 @Component({
   selector: 'app-history',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistoryComponent implements OnInit {
 
-  constructor() { }
+  listedesurl: Array<string> = [];
+
+
+  constructor( private youtubevisioservice: YoutubevisioService ) {
+
+
+
+  }
 
   ngOnInit() {
+
+    this.listedesurl = this.youtubevisioservice.getListedesurls();
+
+
+
+
   }
+
+
+
+
 
 }
