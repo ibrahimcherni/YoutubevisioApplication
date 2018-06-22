@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { YoutubevisioService} from '../youtubevisio.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchBarComponent implements OnInit {
 
-  constructor() { }
+  link: string = '';
+
+  constructor(private youtubevisioservice: YoutubevisioService ) { }
 
   ngOnInit() {
+  }
+
+  onSubmit() { console.log(this.link);
+    this.youtubevisioservice.setUrl(this.link);
   }
 
 }

@@ -1,9 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class YoutubevisioService {
+export class YoutubevisioService implements OnInit{
 
-  constructor() { }
+  ngOnInit()  {
+    console.log('Heloooo');
+  }
+
+  constructor(){
+    console.log('Heloooo from constructor');
+  }
+
+  url: string = '';
+
+
+  setUrl(url: string) {
+
+    this.url = url;
+  }
+
+  getUrl() {
+
+    return this.url;
+  }
+
 }
+

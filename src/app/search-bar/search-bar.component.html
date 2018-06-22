@@ -1,3 +1,11 @@
-<p>
-  search-bar works!
-</p>
+<h3> Ecrivez le lien  </h3>
+<form>
+  <div class="form-group">
+    <label for="link">Link youtube address :</label>
+    <input type="text" class="form-control" id="link"  [(ngModel)]="link" [ngModelOptions]="{standalone: true}" required>
+  </div>
+
+  <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+
+</form>
+
