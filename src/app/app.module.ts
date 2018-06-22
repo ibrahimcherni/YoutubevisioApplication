@@ -8,6 +8,11 @@ import { HistoryComponent } from './history/history.component';
 import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { YoutubevisioService} from './youtubevisio.service';
 import {FormsModule} from '@angular/forms';
+import {RouterModule, Routes} from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: 'video', component: VideoViewComponent },
+];
 
 @NgModule({
   declarations: [
@@ -19,7 +24,8 @@ import {FormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
 
   ],
   providers: [YoutubevisioService],

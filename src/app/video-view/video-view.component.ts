@@ -18,18 +18,21 @@ export class VideoViewComponent implements OnInit, DoCheck {
   }
 
 
-  ngDoCheck(){ console.log('yaatik nam ya amine') ;
-    if ( this.url !== this.youtubevisioservice.getUrl() ) {
-      this.youtubevisioservice.addUrl(this.url);
-      console.log('liste', this.youtubevisioservice.getListedesurls()) ;
+  ngDoCheck() {
 
-    }
+
 
   }
   ngOnInit() {
 
   }
 
+  urlEntry () {
+
+    if ( this.youtubevisioservice.getUrl() === '' )  { return false ; }
+    else { return true ;}
+
+  }
 
   constuireUrl(){
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'.concat(this.youtubevisioservice.getReference()));

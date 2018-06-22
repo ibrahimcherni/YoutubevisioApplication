@@ -10,13 +10,22 @@ export class SearchBarComponent implements OnInit {
 
   link: string = '';
 
+
   constructor(private youtubevisioservice: YoutubevisioService ) { }
 
   ngOnInit() {
+
+
+
   }
 
-  onSubmit() { console.log(this.link);
+  onSubmit() {
+
+    console.log(' ici j"ai appuyé submit ',this.link);
     this.youtubevisioservice.setUrl(this.link);
+    this.youtubevisioservice.addUrl(this.link);
+    console.log('liste des urls ', this.youtubevisioservice.getListedesurls());
+
   }
 
 

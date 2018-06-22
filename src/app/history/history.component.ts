@@ -14,17 +14,24 @@ export class HistoryComponent implements OnInit {
 
   constructor( private youtubevisioservice: YoutubevisioService ) {
 
+    this.listedesurl = this.youtubevisioservice.getListedesurls();
+
 
 
   }
 
   ngOnInit() {
 
-    this.listedesurl = this.youtubevisioservice.getListedesurls();
 
 
 
 
+
+  }
+
+  getUrl() {
+
+    return this.youtubevisioservice.getUrl();
   }
 
 
