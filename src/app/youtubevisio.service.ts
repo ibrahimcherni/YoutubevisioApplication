@@ -45,7 +45,7 @@ export class YoutubevisioService implements OnInit{
 
   addUrl( url: string) {
 
-    if (this.listedesurl.indexOf(url) < 0 ) { this.listedesurl = [].concat(this.listedesurl, url ); }
+    if ((this.listedesurl.indexOf(url) < 0 ) && ( url !== '')) { this.listedesurl = [].concat(this.listedesurl, url ); }
     else { }
   }
 

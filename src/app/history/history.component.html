@@ -1,11 +1,19 @@
 
 
       <h2> Historique </h2>
-          <ul class="list-group" >
-            <li *ngFor=" let url of listedesurl ">
 
-              mdr
+          <ul class="list-group">
+            <router-outlet>
+            <li *ngFor="let url of stockerUrl() ; ">
+
+
+                <a [routerLink] = "['/video', getReference(url) ]" > {{ url }} </a>
+
+
+
             </li>
+            </router-outlet>
+          </ul>
 
 
-      </ul>
+

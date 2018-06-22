@@ -11,7 +11,11 @@ import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 
 const appRoutes: Routes = [
-  { path: 'video', component: VideoViewComponent },
+  { path: 'video/:id', component: VideoViewComponent
+
+
+
+  },
 ];
 
 @NgModule({
