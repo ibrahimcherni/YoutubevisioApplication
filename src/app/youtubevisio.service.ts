@@ -22,6 +22,7 @@ export class YoutubevisioService implements OnInit{
   url: string = ''; // url que l'utilisateur va mettre dans la searchbar
   reference : string = '';  //une réference de la video youtube
   listedesurl: Array<string> = []; // liste des urls
+  listedesbookmarks : Array<string> = []; // liste des bookmarks
 
 
   setUrl(url: string) {
@@ -45,14 +46,55 @@ export class YoutubevisioService implements OnInit{
 
   addUrl( url: string) {
 
-    if ((this.listedesurl.indexOf(url) < 0 ) && ( url !== '')) { this.listedesurl = [].concat(this.listedesurl, url ); }
-    else { }
+    if ((this.listedesurl.indexOf(url) < 0) && (url !== '')) {
+      this.listedesurl = [].concat(this.listedesurl, url);
+    }
   }
 
-  getListedesurls() {
+
+  addToBoockmarks( bookmark: string ) {
+
+    if ((this.listedesbookmarks.indexOf( bookmark ) < 0) && ( bookmark !== '')) {
+      this.listedesbookmarks = [].concat(this.listedesbookmarks, bookmark);
+    }
 
 
-    return this.listedesurl ;
+  }
+
+
+  getListBookmarks() {
+
+    return this.listedesbookmarks;
+  }
+
+
+
+  /* permutation(a: string , b: string ) {
+
+    let c: string;
+
+    c = b;
+    b = a;
+    a=  c;
+  } */
+
+
+  getListedesurls () {
+
+
+    return this.listedesurl;
+
+    //if ( this.listedesurl.indexOf(e) > 0 ) {
+
+    //  for ( let _i = this.listedesurl.indexOf(e) ; _i >= 0 ; _i--) {
+
+     //   this.permutation(this.listedesurl[_i], this.listedesurl[_i - 1]);
+
+    // }
+
+
+   // }
+   // return this.listedesurl;
 
   }
 

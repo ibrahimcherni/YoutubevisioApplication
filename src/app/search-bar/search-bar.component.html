@@ -5,7 +5,10 @@
     <input type="text" class="form-control" id="link"  [(ngModel)]="link" [ngModelOptions]="{standalone: true}" required>
   </div>
 
-  <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+  <button type="submit" class="btn btn-success" (click)="onSubmit()">Watch</button>
+  <button type="submit" class="btn btn-success" (click)="addToBookmarks()">Add to Bookmarks </button>
+  <button type="submit" class="btn btn-success" (click)="showBookmarksList()">Bookmarks List </button>
 
 </form>
+
 

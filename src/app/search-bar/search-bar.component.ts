@@ -11,11 +11,10 @@ export class SearchBarComponent implements OnInit {
   link: string = '';
 
 
+
   constructor(private youtubevisioservice: YoutubevisioService ) { }
 
   ngOnInit() {
-
-
 
   }
 
@@ -24,7 +23,19 @@ export class SearchBarComponent implements OnInit {
     console.log(' ici j"ai appuyé submit ',this.link);
     this.youtubevisioservice.setUrl(this.link);
     this.youtubevisioservice.addUrl(this.link);
-    console.log('liste des urls ', this.youtubevisioservice.getListedesurls());
+    console.log('liste des urls ', this.youtubevisioservice.getListedesurls().reverse());
+
+  }
+
+  addToBookmarks(link: string ) {
+
+    this.youtubevisioservice.addToBoockmarks(link);
+    console.log(this.youtubevisioservice.getListBookmarks());
+
+  }
+
+  showBookmarksList(){
+
 
   }
 

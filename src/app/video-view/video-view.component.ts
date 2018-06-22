@@ -13,6 +13,7 @@ export class VideoViewComponent implements OnInit, DoCheck {
 
   url: string;
 
+
   constructor(private youtubevisioservice: YoutubevisioService , private sanitizer: DomSanitizer , private route: ActivatedRoute ) {
 
 
@@ -29,17 +30,15 @@ export class VideoViewComponent implements OnInit, DoCheck {
   }
   ngOnInit() {
 
+
+
     this.route.paramMap
       .subscribe( Params => { console.log(Params); } ) ;
 
   }
 
-  urlEntry () {
 
-    if ( this.youtubevisioservice.getUrl() === '' )  { return false ; }
-    else { return true ;}
 
-  }
 
   constuireUrl(){
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'.concat(this.youtubevisioservice.getReference()));

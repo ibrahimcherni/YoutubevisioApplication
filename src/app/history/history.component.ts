@@ -36,7 +36,7 @@ export class HistoryComponent implements OnInit {
 
   stockerUrl() {
 
-    return this.youtubevisioservice.getListedesurls();
+    return this.youtubevisioservice.getListedesurls().reverse();
 
   }
 
