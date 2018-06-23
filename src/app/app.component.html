@@ -1,12 +1,37 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <div>
-    <app-search-bar></app-search-bar>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> Youtubevisio </title>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+  <div id="header" class="jumbotron">
+    <h1> Welcome to {{ title }} </h1>
+    <p>
+      this is my project
+    </p>
   </div>
-  <div>
-    <router-outlet>
-    </router-outlet>
+  <div class="row">
+    <div id="menu" class="col-md-5">
+      <app-history></app-history>
+    </div>
+    <div id="content" class="col-md-6">
+      <app-search-bar></app-search-bar>
+      <router-outlet></router-outlet>
+    </div>
   </div>
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

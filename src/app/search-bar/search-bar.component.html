@@ -1,18 +1,14 @@
-<h3> Ecrivez le lien  </h3>
+<h3> Insert Your Youtube Link   </h3>
 <form>
   <div class="form-group">
     <label for="link">Link youtube address :</label>
-    <input type="text" class="form-control" id="link"  [(ngModel)]="link" [ngModelOptions]="{standalone: true}" required>
+    <input type="text" class="form-control" id="link" [(ngModel)]="link" [ngModelOptions]="{standalone: true}" required >
   </div>
 
-  <button type="submit" class="btn btn-success" (click)="onSubmit()">Watch</button>
-  <button type="submit" class="btn btn-success" (click)="addToBookmarks()">Add to Bookmarks </button>
 
-  <router-outlet>
+    <button type="submit" class="btn btn-success" (click)="onSubmit()">Watch</button>
+    <button type="submit" class="btn btn-success" (click)="addToBookmarks()">Add to Bookmarks </button>
     <button [routerLink]="['bookmarks/listedesbookmarks']" type="submit" class="btn btn-success" >Bookmarks List </button>
-  </router-outlet>
-
 
 </form>
-
 

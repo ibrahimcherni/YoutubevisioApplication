@@ -4,9 +4,11 @@
 
       <ul class="list-group">
         <li *ngFor="let url of stockerUrl() ">
-          <h6> {{ lastUpdate | date: 'medium'}} item : </h6> <a [routerLink]="['/video',getReference(url)]" (click)="clickOK(url)">  {{ url }} </a>
+          <a [routerLink]="['/video',getReference(url)]" (click)="clickOK(url)">  item : {{ url }} </a>
         </li>
       </ul>
+
+
 
 
 
