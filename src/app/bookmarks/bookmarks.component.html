@@ -7,6 +7,9 @@
   <ul class="list-group">
     <h5> {{ bookmarkList().length }} favourite videos </h5>
     <li *ngFor="let bookmark of bookmarkList() ">
-      <a> video : {{ bookmark }} </a>
+      <a> item {{ bookmarkList().indexOf(bookmark)}} : {{ bookmark }} </a>
     </li>
   </ul>
+
+
+

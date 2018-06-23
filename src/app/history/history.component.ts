@@ -10,6 +10,7 @@ import { YoutubevisioService} from '../youtubevisio.service';
 export class HistoryComponent implements OnInit {
 
   listedesurl: Array<string> = [];
+  lastUpdate = new Date();
 
 
   constructor( private youtubevisioservice: YoutubevisioService ) {
