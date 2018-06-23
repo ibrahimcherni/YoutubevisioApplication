@@ -5,10 +5,14 @@
     <input type="text" class="form-control" id="link" [(ngModel)]="link" [ngModelOptions]="{standalone: true}" required >
   </div>
 
+  <div class="btn-group btn-group-toggle" data-toggle="buttons">
 
     <button type="submit" class="btn btn-success" (click)="onSubmit()">Watch</button>
     <button type="submit" class="btn btn-success" (click)="addToBookmarks()">Add to Bookmarks </button>
     <button [routerLink]="['bookmarks/listedesbookmarks']" type="submit" class="btn btn-success" >Bookmarks List </button>
-
+  </div>
 </form>
+
+
+
 
