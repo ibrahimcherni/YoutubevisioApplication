@@ -13,21 +13,14 @@ export class YoutubevisioService implements OnInit {
 
   url: string = ''; // url que l'utilisateur va mettre dans la searchbar
   reference: string = '';  //une réference de la video youtube
-  listedesurl: Array<string> = []; // liste des urls
-  listedesbookmarks: Array<string> = []; // liste des bookmarks
+  urllist: Array<string> = []; // liste des urls
+  bookmarklist: Array<string> = []; // liste des bookmarks
 
 
-  constructor(private http: HttpClient) {
-    console.log('Heloooo from constructor');
+  constructor(private http: HttpClient) {}
 
 
-  }
-
-
-  ngOnInit() {
-
-
-  }
+  ngOnInit() {}
 
 
   getFromDatabase(): Observable<any> {
@@ -39,6 +32,12 @@ export class YoutubevisioService implements OnInit {
   postToDatabase(url: string): Observable<any> {
 
     return this.http.post<string>('http://localhost:8000/api/addHistory', url);
+  }
+
+
+  getUrl() {
+
+    return this.url;
   }
 
 
@@ -57,36 +56,41 @@ export class YoutubevisioService implements OnInit {
 
   }
 
+
+
+
+
   // ajouter url à la liste des urls
 
   addUrl(url: string) {
 
-    if ((this.listedesurl.indexOf(url) < 0) && (url !== '')) {
-      this.listedesurl = [].concat(this.listedesurl, url);
-    }
+
+      if ((this.urllist.indexOf(url) < 0) && (url !== '')) {
+        this.urllist = [].concat(this.urllist, url);
+      }
+      if ( this.urllist.indexOf(url) > 0 ) {
+        this.getUrlList(url);
+      }
+
   }
 
 
   addToBoockmarks(bookmark: string) {
 
-    if ((this.listedesbookmarks.indexOf(bookmark) < 0) && (bookmark !== '')) {
-      this.listedesbookmarks = [].concat(this.listedesbookmarks, bookmark);
+    if ((this.bookmarklist.indexOf(bookmark) < 0) && (bookmark !== '')) {
+      this.bookmarklist = [].concat(this.bookmarklist, bookmark);
     }
 
 
   }
 
 
-  getListdesurls() {
 
-
-    return this.listedesurl;
-  }
 
 
   getListBookmarks() {
 
-    return this.listedesbookmarks;
+    return this.bookmarklist;
   }
 
 
@@ -94,15 +98,12 @@ export class YoutubevisioService implements OnInit {
 
     console.log('getting url')
     let i = 0;
-    let test: Array<string> = [];
-
-
     this.getFromDatabase().subscribe((data: any) => {
-      let arr = data.slice(1, data.length - 1).split('},{');
+      const segment = data.slice(1, data.length - 1).split('},{');
 
-      let f: string[] = [];
-      arr.map(el => {
-        if (arr.length === 1) {
+      const charlist: string[] = [];
+      segment.map(el => {
+        if (segment.length === 1) {
 
         } else {
           i = i + 1;
@@ -111,26 +112,48 @@ export class YoutubevisioService implements OnInit {
             el = el + '}';
 
           }
-          else if (i === arr.length) {
+          else if (i === segment.length) {
             el = '{' + el;
           } else {
 
             el = '{' + el + '}';
           }
         }
-        f.push(el);
+        charlist.push(el);
 
       }),
 
-        f.forEach(k => {
+        charlist.forEach(i => {
 
-          this.addUrl(JSON.parse(k).url);
+          this.addUrl(JSON.parse(i).url);
 
 
         });
 
 
     });
+
+
+  }
+
+
+  getUrlList( link: string ) {
+
+    let c: string;
+
+    if ( this.urllist.indexOf(link) > 0 ) {
+
+      for ( let _i = this.urllist.indexOf(link); _i > 0 ; _i--) {
+
+        c = this.urllist[_i];
+        this.urllist[_i]=this.urllist[_i - 1];
+        this.urllist[_i - 1] = c;
+
+      }
+    }
+
+    return this.urllist;
+
 
 
   }

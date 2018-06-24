@@ -10,31 +10,19 @@ import {Router} from '@angular/router';
 export class SearchBarComponent implements OnInit {
 
   link: string = '';
-  listedesurl: Array<string> = [];
 
+  constructor(private youtubevisioservice: YoutubevisioService , private router: Router) {}
 
-
-  constructor(private youtubevisioservice: YoutubevisioService , private router: Router) {
-
-
-  }
-
-  ngOnInit() {
-
-
-  }
+  ngOnInit() {}
 
 
   onSubmit() {
     this.router.navigate(['/'])
-    console.log(' ici j"ai appuyé submit ', this.link);
     this.youtubevisioservice.setUrl(this.link);
     this.youtubevisioservice.addUrl(this.link);
 
 
   }
-
-
 
 
   addToBookmarks( ) {

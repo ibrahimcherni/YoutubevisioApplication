@@ -9,9 +9,6 @@ import { YoutubevisioService} from '../youtubevisio.service';
 })
 export class HistoryComponent implements OnInit {
 
-  listedesurl: Array<string> = [];
-
-
 
   constructor( private youtubevisioservice: YoutubevisioService ) {
 
@@ -24,18 +21,16 @@ export class HistoryComponent implements OnInit {
   }
 
 
+  historyList() {
 
-  stockerUrl() {
-
-
-    return this.youtubevisioservice.getListdesurls();
+    const test = this.youtubevisioservice.getUrl();
+    return this.youtubevisioservice.getUrlList(test);
 
   }
 
 
-  clickOK(url: string) {
+  watchVideo(url: string) {
     this.youtubevisioservice.setUrl(url);
-
   }
 
 }
