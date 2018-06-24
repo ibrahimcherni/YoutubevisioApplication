@@ -6,60 +6,54 @@ use function MongoDB\BSON\toJSON;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
-
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Serializer\Serializer;
+use Symfony\Component\Serializer\Encoder\XmlEncoder;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 use App\Entity\History;
+
+
 
 class HistoryController extends Controller
 {
 
 
     /**
-     * @Route("/history/lol", name="history")
+     * @Route("/api/addHistory", name="history",methods="POST")
      */
 
-    public function index()
+    public function addHistory(Request $request)
     {
-        // you can fetch the EntityManager via $this->getDoctrine()
-        // or you can add an argument to your action: index(EntityManagerInterface $entityManager)
         $entityManager = $this->getDoctrine()->getManager();
-
-
         $history = new History();
-        $history->setUrl('youtube123');
-
-
-
-
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-
+        $history->setUrl($request->get('url'));
         $entityManager->persist($history);
-
-
-
-
-        // actually executes the queries (i.e. the INSERT query)
-
         $entityManager->flush();
+        $response = new JsonResponse();
+        $response->setData(array('url' => $history->getUrl()));
 
 
-        return new Response('Saved new url with id '.$history->getId());
+        return $response;
     }
 
     /**
-     * @Route("/history", name="history_show")
+     * @Route("/api/history", name="history_show",methods="GET")
      */
-    public function findAll(): array
+    public function findAll()
     {
-        $conn = $this->getDoctrine()->getConnection();
+        $encoders = array(new XmlEncoder(), new JsonEncoder());
+        $normalizers = array(new ObjectNormalizer());
 
-        $sql = '
-        SELECT * FROM history 
-        ';
-        $stmt = $conn->prepare($sql);
-
-        // returns an array of arrays (i.e. a raw data set)
-        return new Response('historique liste ' .$stmt->fetchAll());
+        $serializer = new Serializer($normalizers, $encoders);
+        $repository = $this->getDoctrine()->getRepository(History::class);
+        $response = new Response();
+        $jsonContent = $serializer->serialize($repository->findAll(), 'json');
+        $response->setContent(json_encode($jsonContent));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
 
     }
 

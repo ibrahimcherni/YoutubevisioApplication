@@ -21,11 +21,7 @@ class History
      */
     private $url;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
 
-    private $date;
 
 
 
@@ -51,17 +47,7 @@ class History
         return $this;
     }
 
-    public function getDate(): ?string
-    {
-        return $this->date;
-    }
 
-    public function setDate(string $date): self
-    {
-        $this->date = $date;
-
-        return $this;
-    }
 
 
 
