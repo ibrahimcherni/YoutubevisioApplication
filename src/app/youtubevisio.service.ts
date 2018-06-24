@@ -1,7 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { HttpHeaders } from '@angular/common/http';
+
 
 
 
@@ -12,10 +12,11 @@ import { HttpHeaders } from '@angular/common/http';
 export class YoutubevisioService implements OnInit {
 
 
-  url: string = ''; // url que l'utilisateur va mettre dans la searchbar
-  reference : string = '';  //une réference de la video youtube
-  urllist: Array<string> = []; // liste des urls
-  bookmarklist: Array<string> = []; // liste des bookmarks
+  url: string = ''; // to save the url that the user is searching for to watch.
+  reference: string = '';  //every youtube video has this form :'https://www.youtube.com/watch?v=reference' with reference is
+  // the video id
+  urllist: Array<string> = []; // to save the url into the url list
+  bookmarklist: Array<string> = []; // to save the url into the bookmark list
 
 
   constructor(private http: HttpClient ) {}
@@ -23,6 +24,7 @@ export class YoutubevisioService implements OnInit {
 
   ngOnInit() {}
 
+// httpfoundation : call for database to extract the history
 
   getFromDatabase(): Observable<any> {
 
@@ -30,29 +32,32 @@ export class YoutubevisioService implements OnInit {
 
   }
 
+  // httpfoundation : to post a new history in the history database : we have to post with json
+
   postToDatabase(url: string): Observable<any> {
     let urljson: any = {};
     urljson['url'] = url;
-    const headers = new Headers();
+    /*const headers = new Headers();
     headers.append('Accept', 'application/json');
-    headers.append('Content-Type', 'application/json');
-    return this.http.post<string>('http://localhost:8000/api/addHistory', JSON.stringify(urljson),{ headers: headers} ) ;
+    headers.append('Content-Type', 'application/json');*/
+    return this.http.post<string>('http://localhost:8000/api/addHistory', JSON.stringify(urljson) ) ;
   }
 
+  // function to get the url
 
   getUrl() {
 
     return this.url;
   }
 
-
+// to set new url
   setUrl(url: string) {
 
     this.url = url;
   }
 
 
-// fonction pour avoir la réference de la video youtube à partir de l'url
+// to extract the video reference from url typed by a user
 
   getReference() {
 
@@ -65,7 +70,9 @@ export class YoutubevisioService implements OnInit {
 
 
 
-  // ajouter url à la liste des urls
+// to add the url into the url list with two conditions :
+  // 1 condition : if the url doesn't exist we have to add it in the local storage history
+  // 2 condition : if the url exist we have to put the url in the head for url list
 
   addUrl(url: string) {
 
@@ -79,7 +86,7 @@ export class YoutubevisioService implements OnInit {
 
   }
 
-
+// to add the url into the bookmark list
   addToBoockmarks(bookmark: string) {
 
     if ((this.bookmarklist.indexOf(bookmark) < 0) && (bookmark !== '')) {
@@ -89,20 +96,21 @@ export class YoutubevisioService implements OnInit {
 
   }
 
-
+// to extract the bookmark list
 
   getListBookmarks() {
 
     return this.bookmarklist;
   }
 
+// this function to extract the history from the database
 
   getListedesurlsFromdatabase() {
 
-    console.log('getting url')
+
     let i = 0;
     this.getFromDatabase().subscribe((data: any) => {
-      const segment = data.slice(1, data.length - 1).split('},{');
+      const segment = data.slice(1, data.length - 1).split('},{'); // slpit the data received from the data base
 
       const charlist: string[] = [];
       segment.map(el => {
@@ -124,11 +132,11 @@ export class YoutubevisioService implements OnInit {
         }
         charlist.push(el);
 
-      }),
+      }),  // after this past we built a list of {"id: ", "url"}
 
         charlist.forEach(i => {
 
-          this.addUrl(JSON.parse(i).url);
+          this.addUrl(JSON.parse(i).url); // we add each url into the url list
 
 
         });
@@ -139,6 +147,10 @@ export class YoutubevisioService implements OnInit {
 
   }
 
+// to put an order for the url list for example :
+  // if you click on url in the history , this function will put it first in the history
+  // if you type a url that already exists in the history , this function will identify the url among urls in the history list a
+  // put in first in the function
 
   getUrlList( link: string ) {
 
@@ -147,7 +159,7 @@ export class YoutubevisioService implements OnInit {
     if ( this.urllist.indexOf(link) > 0 ) {
 
       for ( let _i = this.urllist.indexOf(link); _i > 0 ; _i--) {
-
+// permutation between elements
         c = this.urllist[_i];
         this.urllist[_i]= this.urllist[_i - 1];
         this.urllist[_i - 1] = c;

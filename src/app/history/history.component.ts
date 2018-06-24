@@ -12,7 +12,7 @@ export class HistoryComponent implements OnInit {
 
   constructor( private youtubevisioservice: YoutubevisioService ) {
 
-    this.youtubevisioservice.getListedesurlsFromdatabase();
+    this.youtubevisioservice.getListedesurlsFromdatabase(); // call in the constructor to call for the history from the database
 
   }
 
@@ -20,6 +20,7 @@ export class HistoryComponent implements OnInit {
 
   }
 
+// this fonction built to call for the history list
 
   historyList() {
 
@@ -28,6 +29,7 @@ export class HistoryComponent implements OnInit {
 
   }
 
+// this function built to watch video when the user clicks on url from the history
 
   watchVideo(url: string) {
     this.youtubevisioservice.setUrl(url);

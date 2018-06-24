@@ -17,6 +17,10 @@ export class VideoViewComponent implements OnInit, DoCheck {
   ngDoCheck() {}
   ngOnInit() {}
 
+  // this function is called when the user search for the url ( or when he clicks watch) this function
+  // has to build the url with by pass security
+
+
   buildUrl() {
     return this.sanitizer.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'.concat(this.youtubevisioservice.getReference()));
   }

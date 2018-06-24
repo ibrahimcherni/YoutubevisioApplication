@@ -20,6 +20,7 @@ export class BookmarksComponent implements OnInit {
 
 
   }
+// this function is called when the user clicks on the bookmark list button
 
   bookmarkList() {
 
