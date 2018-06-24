@@ -30,8 +30,14 @@ export class YoutubevisioService implements OnInit {
   }
 
   postToDatabase(url: string): Observable<any> {
+    let urljson: any = {};
+    urljson['url']= url;
+    console.log(urljson);
+    const headers = new Headers();
+    headers.append('Accept', 'application/json');
+    headers.append('Content-Type', 'application/json');
 
-    return this.http.post<string>('http://localhost:8000/api/addHistory', url);
+    return this.http.post<string>('http://localhost:8000/api/addHistory', JSON.stringify(urljson),{headers: headers}));
   }
 
 
@@ -83,8 +89,6 @@ export class YoutubevisioService implements OnInit {
 
 
   }
-
-
 
 
 

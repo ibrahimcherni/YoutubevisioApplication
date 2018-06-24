@@ -17,10 +17,10 @@ export class SearchBarComponent implements OnInit {
 
 
   onSubmit() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
     this.youtubevisioservice.setUrl(this.link);
+    this.youtubevisioservice.postToDatabase(this.link).subscribe(data => console.log(data));
     this.youtubevisioservice.addUrl(this.link);
-
 
   }
 
