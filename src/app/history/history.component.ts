@@ -10,10 +10,12 @@ import { YoutubevisioService} from '../youtubevisio.service';
 export class HistoryComponent implements OnInit {
 
   listedesurl: Array<string> = [];
-  lastUpdate = new Date();
+
 
 
   constructor( private youtubevisioservice: YoutubevisioService ) {
+
+    console.log('hello from console historique', this.youtubevisioservice.getListedesurlsFromdatabase());
 
 
 
@@ -23,23 +25,22 @@ export class HistoryComponent implements OnInit {
 
   ngOnInit() {
 
-
-    console.log('hello', this.listedesurl);
-
-
-
-
-
-
-
-
   }
+
+
+
+
+
+
 
   stockerUrl() {
 
-    return this.youtubevisioservice.getListedesurls().reverse();
+
+    return this.youtubevisioservice.getListdesurls();
 
   }
+
+
 
   getReference(url: string) {
     this.youtubevisioservice.setUrl(url);
@@ -47,11 +48,11 @@ export class HistoryComponent implements OnInit {
   }
 
 
-  clickOK(url :string) {
-
+  clickOK(url: string) {
     this.youtubevisioservice.setUrl(url);
 
   }
+
 
 
 }

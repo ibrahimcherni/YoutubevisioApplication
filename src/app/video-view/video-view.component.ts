@@ -11,8 +11,6 @@ import {ActivatedRoute, convertToParamMap} from '@angular/router';
 export class VideoViewComponent implements OnInit, DoCheck {
 
 
-  url: string;
-
 
   constructor(private youtubevisioservice: YoutubevisioService , private sanitizer: DomSanitizer , private route: ActivatedRoute ) {
 

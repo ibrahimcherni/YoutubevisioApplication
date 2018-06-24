@@ -2,16 +2,12 @@
 
       <h2> Historique </h2>
 
+
       <ul class="nav nav-pills nav-stacked">
         <li *ngFor="let url of stockerUrl() ">
           <a [routerLink]="['/video',getReference(url)]" (click)="clickOK(url)">  item : {{ url }} </a>
         </li>
       </ul>
-
-
-
-
-
 
 
 

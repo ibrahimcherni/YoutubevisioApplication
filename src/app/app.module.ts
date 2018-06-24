@@ -9,6 +9,8 @@ import { BookmarksComponent } from './bookmarks/bookmarks.component';
 import { YoutubevisioService} from './youtubevisio.service';
 import {FormsModule} from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
 
 const appRoutes: Routes = [
   { path: 'video/:id',
@@ -30,12 +32,14 @@ const appRoutes: Routes = [
     SearchBarComponent,
     VideoViewComponent,
     HistoryComponent,
-    BookmarksComponent
+    BookmarksComponent,
+
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
 
   ],
   providers: [YoutubevisioService],
