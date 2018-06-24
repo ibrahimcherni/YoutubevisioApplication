@@ -23,8 +23,8 @@ export class HistoryComponent implements OnInit {
 
   historyList() {
 
-    const test = this.youtubevisioservice.getUrl();
-    return this.youtubevisioservice.getUrlList(test);
+    const url = this.youtubevisioservice.getUrl();
+    return this.youtubevisioservice.getUrlList(url);
 
   }
 

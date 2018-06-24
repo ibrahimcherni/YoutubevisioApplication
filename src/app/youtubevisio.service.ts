@@ -2,22 +2,23 @@ import { Injectable, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpHeaders } from '@angular/common/http';
-import { catchError , map , tap } from 'rxjs/operators';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class YoutubevisioService implements OnInit {
 
 
   url: string = ''; // url que l'utilisateur va mettre dans la searchbar
-  reference: string = '';  //une réference de la video youtube
+  reference : string = '';  //une réference de la video youtube
   urllist: Array<string> = []; // liste des urls
   bookmarklist: Array<string> = []; // liste des bookmarks
 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient ) {}
 
 
   ngOnInit() {}
@@ -31,13 +32,11 @@ export class YoutubevisioService implements OnInit {
 
   postToDatabase(url: string): Observable<any> {
     let urljson: any = {};
-    urljson['url']= url;
-    console.log(urljson);
+    urljson['url'] = url;
     const headers = new Headers();
     headers.append('Accept', 'application/json');
     headers.append('Content-Type', 'application/json');
-
-    return this.http.post<string>('http://localhost:8000/api/addHistory', JSON.stringify(urljson),{headers: headers}));
+    return this.http.post<string>('http://localhost:8000/api/addHistory', JSON.stringify(urljson),{ headers: headers} ) ;
   }
 
 
@@ -150,7 +149,7 @@ export class YoutubevisioService implements OnInit {
       for ( let _i = this.urllist.indexOf(link); _i > 0 ; _i--) {
 
         c = this.urllist[_i];
-        this.urllist[_i]=this.urllist[_i - 1];
+        this.urllist[_i]= this.urllist[_i - 1];
         this.urllist[_i - 1] = c;
 
       }
