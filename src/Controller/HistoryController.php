@@ -27,9 +27,13 @@ class HistoryController extends Controller
 
     public function addHistory(Request $request)
     {
+        $data = json_decode(
+            $request->getContent(), true
+        );
+
         $entityManager = $this->getDoctrine()->getManager();
         $history = new History();
-        $history->setUrl($request->get('url'));
+        $history->setUrl($data['url']);
         $entityManager->persist($history);
         $entityManager->flush();
         $response = new JsonResponse();
