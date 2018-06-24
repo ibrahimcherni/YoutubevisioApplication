@@ -12,7 +12,6 @@ use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
 use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-
 use App\Entity\History;
 
 
@@ -29,7 +28,7 @@ class HistoryController extends Controller
     {
         $data = json_decode(
             $request->getContent(), true
-        );
+        ); // code in json to add history from angular
 
         $entityManager = $this->getDoctrine()->getManager();
         $history = new History();
@@ -57,6 +56,7 @@ class HistoryController extends Controller
         $jsonContent = $serializer->serialize($repository->findAll(), 'json');
         $response->setContent(json_encode($jsonContent));
         $response->headers->set('Content-Type', 'application/json');
+
         return $response;
 
     }
