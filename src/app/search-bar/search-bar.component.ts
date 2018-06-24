@@ -21,7 +21,6 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit() {
 
-    this.listedesurl = this.youtubevisioservice.getListedesurlsFromdatabase();
 
   }
 

@@ -15,21 +15,13 @@ export class HistoryComponent implements OnInit {
 
   constructor( private youtubevisioservice: YoutubevisioService ) {
 
-    console.log('hello from console historique', this.youtubevisioservice.getListedesurlsFromdatabase());
-
-
-
-
+    this.youtubevisioservice.getListedesurlsFromdatabase();
 
   }
 
   ngOnInit() {
 
   }
-
-
-
-
 
 
 
@@ -41,18 +33,9 @@ export class HistoryComponent implements OnInit {
   }
 
 
-
-  getReference(url: string) {
-    this.youtubevisioservice.setUrl(url);
-    return this.youtubevisioservice.getReference();
-  }
-
-
   clickOK(url: string) {
     this.youtubevisioservice.setUrl(url);
 
   }
-
-
 
 }
