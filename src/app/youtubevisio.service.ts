@@ -53,7 +53,13 @@ export class YoutubevisioService implements OnInit {
 // to set new url
   setUrl(url: string) {
 
-    this.url = url;
+    if (url !== '') {
+
+      this.url = url;
+
+    }
+
+
   }
 
 
@@ -80,7 +86,7 @@ export class YoutubevisioService implements OnInit {
       if ((this.urllist.indexOf(url) < 0) && (url !== '')) {
         this.urllist = [].concat(this.urllist, url);
       }
-      if ( this.urllist.indexOf(url) > 0 ) {
+      if (( this.urllist.indexOf(url) > 0 ) && (url !== '')) {
         this.getUrlList(url);
       }
 
